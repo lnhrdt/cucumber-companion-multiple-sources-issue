@@ -1,0 +1,38 @@
+[versions]
+cucumber = "7.20.1"
+junit-jupiter = "5.11.2"
+junit-platform = "1.11.2"
+kotlin = "2.0.20"
+playwright = "1.48.0"
+gradleNodePlugin = "7.1.0"
+gradleCucumberCompanion = "1.2.0" # https://github.com/gradle/cucumber-companion/releases
+testcontainers = "1.20.2" # https://github.com/testcontainers/testcontainers-java/releases
+
+[libraries]
+cucumber-java = { module = "io.cucumber:cucumber-java", version.ref = "cucumber" }
+cucumber-picoContainer = { module = "io.cucumber:cucumber-picocontainer", version.ref = "cucumber" }
+cucumber-junitPlatformEngine = { module = "io.cucumber:cucumber-junit-platform-engine", version.ref = "cucumber" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platformSuiteApi = { module = "org.junit.platform:junit-platform-suite-api", version.ref = "junit-platform" }
+junit-platformSuiteEngine = { module = "org.junit.platform:junit-platform-suite-engine", version.ref = "junit-platform" }
+playwright-playwright = { module = "com.microsoft.playwright:playwright", version.ref = "playwright" }
+testcontainers-testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+
+[bundles]
+test-implementation = [
+    "playwright-playwright",
+    "testcontainers-testcontainers",
+    "cucumber-java",
+    "junit-jupiter",
+    "junit-platformSuiteApi",
+]
+test-runtime = [
+    "cucumber-junitPlatformEngine",
+    "cucumber-picoContainer",
+    "junit-platformSuiteEngine",
+]
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+node = { id = "com.github.node-gradle.node", version.ref = "gradleNodePlugin" }
+cucumberCompanion = { id = "com.gradle.cucumber.companion", version.ref = "gradleCucumberCompanion" }
